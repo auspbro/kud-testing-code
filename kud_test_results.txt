@@ -1,0 +1,90 @@
+
+uname -n
+>> dyson-n276-hlp
+
+MFMStart
+Manufacturing mode: On
+
+ReImgVer
+Image Ver: manuf-image_v0.0.1
+
+WrPCBASN KUD1234567
+Write PCBA_SN: PASS
+
+RePCBASN
+PCBA_SN: KUD1234567
+
+ReStoInf
+EMMC size: 7456 MB
+Memory size: 1931 MB
+
+ReWBTMAC
+WIFI: 80:D2:1D:81:2C:3B
+BT: 80:D2:1D:81:2C:3A
+
+VeriIMU
+IMU Status: Pass
+
+VeriIMUINTs
+IMU_INT1: Pass
+IMU_INT2: Pass
+
+CKWIFI5G BR
+5G-RSSI: -70.00
+
+CKWIFI2G Guest
+2.4G-RSSI: N/A
+
+CKWIFI2GND BR
+2.4G-RSSI: N/A
+
+# Sakia NB AN990113551
+CheckBTP A0:88:69:46:45:CD
+# BLE Dongle
+CheckBTP 00:15:83:EE:AA:E0
+BT: PASSBT: PASS
+
+CkMBINT
+INTERRUPT_TO_HLP: 1
+
+VeriCBIOP
+CAPTURE: Pass
+
+VeriLBI2C
+I2C0: PASS
+
+VeriUSB2
+Unimplemented
+
+VeriUBI2C
+I2C1: PASS
+
+exit
+
+
+argument  可缩写为  arg     参数
+buffer 可缩写为 buff        缓冲
+clock  可缩写为  clk 
+command  可缩写为 cmd       指令
+compare  可缩写为 cmp 
+configuration  可缩写 为 cfg 配置
+device 可缩写为 dev          设备、器件
+error  可缩写为 err 
+hexadecimal 可缩写为 hex     十六进制
+increment 可缩写为 inc       增量
+initialize  可缩写为 init    初始化
+maximum  可缩写为max 
+message  可缩写为 msg 
+minimum  可缩写为 min 
+parameter 可缩写为 para      参数
+previous  可缩写为  prev     先前的，上一个
+register  可缩写为  reg      寄存器
+semaphore 可缩写为 sem       信号
+statistic 可缩写为 stat      统计量
+synchronize 可缩写为  sync   同步
+temp  可缩写为 tmp 
+pointer   pntr
+reset     rst
+address   addr
+signal    sig
+

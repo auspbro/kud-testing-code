@@ -1,0 +1,13 @@
+-
+    Name: BiosUpdate
+    Instructions: >
+        BIOS Update
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: BiosUpdate
+            Args: 
+                Image: coreboot_spi_capsuleFW_CHT_N276_v1.37.2.fv
+                Folder: .
+                Retry: 3

@@ -1,0 +1,26 @@
+-
+    Name: Get_FirmwareVersion
+    Options:
+        Automated: True
+    Instructions: >
+        Get Firmware Version, Please Wait...
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Cmd: 'img_info'
+            Replace:
+                - "\n                "
+                - ""
+            Regex: '(\w+):[\s]+([\w\.]+)'
+            Results:
+            -
+                name: FW_VER
+                type: str
+                item: 2
+                index: 1
+            -
+                name: COMMIT_ID
+                type: str
+                item: 4
+                index: 1

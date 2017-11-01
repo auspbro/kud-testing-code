@@ -1,0 +1,350 @@
+-
+    Name: History_Clear
+    Instructions: >
+        History Clear
+    Proc: Commander
+    Args:
+        Cmds:
+        - Cmd: "echo '7 4 1 7' > /proc/sys/kernel/printk"
+        - Cmd: 'history -c'
+-
+    Name: ReBiosVer
+    Instructions: >
+        Read BIOS Version
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Cmd: 'cat /sys/class/dmi/id/bios_version'
+            Regex: '(\d+(?:\.\d+){2})'
+            Results:
+            -
+                name: BIOS_VER
+                type: str
+                item: 0
+                index: 0
+-
+    Name: ReImgVer
+    Instructions: >
+        Read Image information
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Fun: RunMFMStart
+            Args: 
+                Run: ReImgVer
+            Regex: '(\d+\.\d+\.\d+)'
+            Results:
+            -
+                name: IMG_VER
+                type: str
+                item: 0
+                index: 0
+-
+    Name: WrPCBASN
+    Instructions: >
+        Write PCBA serial number
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: RunMFMStart
+            Args: 
+                Run: WrPCBASN
+                Para: 1111
+            Regex: '(\w+.\w+.\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: WrPCBASN
+                type: str
+                item: 0
+                index: 1
+-
+    Name: RePCBASN
+    Instructions: >
+        Read PCBA serial number
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Fun: RunMFMStart
+            Args: 
+                Run: RePCBASN
+            Regex: '(\w+.\w+.\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: RePCBASN
+                type: str
+                item: 0
+                index: 1
+-
+    Name: ReStoInf
+    Instructions: >
+        Read storage information
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Fun: RunMFMStart
+            Args: 
+                Run: ReStoInf
+            Regex: '(\w+.\w+.\w+):[\s]+([-+]?\d+)'
+            Unit: 'MB'
+            Results:
+            -
+                name: EMMC_SIZE
+                type: str
+                item: 0
+                index: 1
+            -
+                name: MEM_SIZE
+                type: str
+                item: 1
+                index: 1
+-
+    Name: ReWBTMAC
+    Instructions: >
+        Read Wi-Fi and BT Address
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Fun: RunMFMStart
+            Args: 
+                Run: ReWBTMAC
+            Regex: '(\w+):[\s]+(\w+:\w+:\w+:\w+:\w+:\w+)'
+            Results:
+            -
+                name: WIFI
+                type: str
+                item: 0
+                index: 1
+            -
+                name: BT
+                type: str
+                item: 1
+                index: 1
+-
+    Name: VeriIMU
+    Instructions: >
+        Check functionality of IMU
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: RunMFMStart
+            Args: 
+                Run: VeriIMU
+            Regex: '(\w+.\w+.\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: VeriIMU
+                type: str
+                item: 0
+                index: 1
+-
+    Name: VeriIMUINTs
+    Instructions: >
+        Verify IMU INT2 pin
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Fun: RunMFMStart
+            Args: 
+                Run: VeriIMUINTs
+            Regex: '(\w+.\w+.\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: IMU_INT1
+                type: str
+                item: 0
+                index: 1
+            -
+                name: IMU_INT2
+                type: str
+                item: 1
+                index: 1
+-
+    Name: CKWIFI5G
+    Instructions: >
+        Check WIFI 5G performance
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: RunMFMStart
+            Args: 
+                Run: CKWIFI5G
+                Para: opcl-q7cf8e8-3
+            Regex: '(\w+.\w+.\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: CKWIFI5G
+                type: str
+                item: 0
+                index: 1
+-
+    Name: CKWIFI2G
+    Instructions: >
+        Check WIFI 2.4G performance
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: RunMFMStart
+            Args: 
+                Run: CKWIFI2G
+                Para: TP-LINK_SE
+            Regex: '(\w+.\w+.\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: CKWIFI2G
+                type: str
+                item: 0
+                index: 1
+-
+    Name: CKWIFI2GND
+    Instructions: >
+        Check WIFI 2.4G performance with GND path
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: RunMFMStart
+            Args: 
+                Run: CKWIFI2GND
+                Para: TP-LINK_SE
+            Regex: '(\w+.\w+.\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: CKWIFI2GND
+                type: str
+                item: 0
+                index: 1
+-
+    Name: CheckBTP
+    Instructions: >
+        Check BT performance
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Fun: RunMFMStart
+            Args: 
+                Run: CheckBTP
+                Para: A0:88:69:46:45:CD
+            Regex: '(\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: CheckBTP
+                type: str
+                item: 0
+                index: 1
+-
+    Name: CkMBINT
+    Instructions: >
+        Check INTERRUPT_TO_HLP
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Fun: RunMFMStart
+            Args: 
+                Run: CkMBINT
+            Regex: '(\w+.\w+.\w+):[\s]+([-+]?\w+)'
+            Results:
+            -
+                name: CkMBINT
+                type: str
+                item: 1
+                index: 1
+-
+    Name: VeriCBIOP
+    Instructions: >
+        Verify camera capture
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: RunMFMStart
+            Args: 
+                Run: VeriCBIOP
+            Regex: '(\w+.\w+.\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: VeriCBIOP
+                type: str
+                item: 0
+                index: 1
+-
+    Name: VeriLBI2C
+    Instructions: >
+        Verify I2C bus on LED board
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: RunMFMStart
+            Args: 
+                Run: VeriLBI2C
+            Regex: '(\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: VeriLBI2C
+                type: str
+                item: 0
+                index: 1
+-
+    Name: VeriUSB2
+    Instructions: >
+        Verify USB 2.0
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: RunMFMStart
+            Args: 
+                Run: VeriUSB2
+            Regex: '(\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: VeriUSB2
+                type: str
+                item: 0
+                index: 1
+-
+    Name: VeriUBI2C
+    Instructions: >
+        Verify I2C bus on USB board
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: RunMFMStart
+            Args: 
+                Run: VeriUBI2C
+            Regex: '(\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: VeriUBI2C
+                type: str
+                item: 0
+                index: 1
+-
+    Name: VeriUSB3
+    Instructions: >
+        Verify USB 3.0
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Cmd: 'lsusb -t | grep "usb-storage, 5000M" | wc -l'
+            Regex: '(\d+)'
+            Results:
+            -
+                name: VeriUSB3
+                type: str
+                item: 0
+                index: 0

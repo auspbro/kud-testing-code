@@ -1,0 +1,44 @@
+-
+    Name: WiFi_RSSI
+    Instructions: >
+       Get WiFi RSSI (Received Signal Strength Indication) 
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: WirelessRSSI
+            Args: 
+                AP24G: TP-LINK_SE
+                AP50G: opcl-q7cf8e8-3
+            Regex: '([-+]?\w+.\w+)'
+            Threshold:
+            Results:
+            -
+                name: WIFI_RSSI_24G
+                type: str
+                item: 0
+                index: 0
+            -
+                name: WIFI_RSSI_50G
+                type: str
+                item: 1
+                index: 0
+-
+    Name: Bluetooth_RSSI
+    Instructions: >
+       Get Bluetooth RSSI (Received Signal Strength Indication) 
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: BluetoothRSSI
+            Args: 
+                DEV_ADDR: A0:88:69:46:45:CD
+                SCAN_TIME: 20
+            Regex: '([-+]?\w+)'
+            Results:
+            -
+                name: BT_RSSI_DEV
+                type: str
+                item: 0
+                index: 0

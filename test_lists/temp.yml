@@ -1,0 +1,19 @@
+-
+    Name: CheckBTP
+    Instructions: >
+        Check BT performance
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Fun: RunMFMStart
+            Args: 
+                Run: CheckBTP
+                Para: A0:88:69:46:45:CD
+            Regex: '(\w+):[\s]+([-+]?\w+.\w+)'
+            Results:
+            -
+                name: CheckBTP
+                type: str
+                item: 0
+                index: 1

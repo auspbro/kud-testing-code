@@ -1,0 +1,13 @@
+-
+    Name: Device_Reboot
+    Instructions: >
+        Device Reboot
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Fun: DeviceReboot
+            Args: 
+                Cmd: reboot
+                Display: False
+                Time: 2

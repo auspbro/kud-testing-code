@@ -1,0 +1,222 @@
+-
+    Name: History_Clear
+    Instructions: >
+        History Clear
+    Proc: Commander
+    Args:
+        Cmds:
+        - Cmd: 'history -c'
+-
+    Name: BISO_Version
+    Instructions: >
+        Read BIOS Version
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Cmd: 'dmesg | grep CHT'
+            Regex: '(\d+(?:\.\d+){2})'
+            Results:
+            -
+                name: BIOS_VER
+                type: str
+                item: 0
+                index: 0
+-
+    Name: BSP_Version
+    Instructions: >
+        Read Linux Kernel Version
+    Proc: Commander
+    Args:
+        Cmds:
+        - Cmd: "echo '7 4 1 7' > /proc/sys/kernel/printk"
+        -
+            Cmd: 'hostname'
+            Regex: '(\w+(\-\w+){1,2})'
+            Results:
+            -
+                name: BSP_VER
+                type: str
+                item: 0
+                index: 0
+-
+    Name: Memory_Size
+    Instructions: >
+       Get Total Memory Size (byte)
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Cmd: "cat /proc/meminfo | grep MemTotal: | awk '{print $2}'"
+            Regex: '(\d+)'
+            Results:
+            -
+                name: MEM_SIZE
+                type: str
+                item: 0
+                index: 0
+-
+    Name: eMMC_Size
+    Instructions: >
+       Get eMMC Size (byte)
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Cmd: "fdisk -l /dev/mmcblk0 | awk '/Disk/ {print $5; exit}'"
+            Regex: '(\d+)'
+            Results:
+            -
+                name: EMMMC_SIZE
+                type: str
+                item: 0
+                index: 0
+-
+    Name: IMU_Status
+    Instructions: >
+       Get IMU Status by i2cdetect command
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Cmd: "i2cdetect -y -r 5 | grep 60 | awk '{print $13}'"
+            Regex: '(\w+)'
+            Results:
+            -
+                name: IMU_STAT
+                type: str
+                item: 0
+                index: 0
+-
+    Name: USB3_Stick
+    Instructions: >
+       Get Mount USB 3.0 Stick Status
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Cmd: 'lsusb -t | grep "usb-storage, 5000M" | wc -l'
+            Regex: '(\d+)'
+            Results:
+            -
+                name: USB3_STICK
+                type: str
+                item: 0
+                index: 0
+-
+    Name: USB2_Stick
+    Instructions: >
+       Get Mount USB 2.0 Stick Status
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Cmd: 'lsusb -t | grep "usb-storage, 480M" | wc -l'
+            Regex: '(\d+)'
+            Results:
+            -
+                name: USB2_STICK
+                type: str
+                item: 0
+                index: 0
+-
+    Name: Camera_Capture
+    Instructions: >
+       Read Camera Capture Status
+    Proc: Commander
+    Args:
+        Cmds:
+        - Cmd: 'rm /tmp/test-00*.bin'
+        - Cmd: "yavta /dev/video0 -i0 -c1 -n5 -s640x480 -fSGRBG10 -w0x9f0903:1 -F/tmp/test"
+        -
+            Cmd: "ls -l /tmp/test-00*.bin | awk '{print $5}'"
+            Regex: '(\d+)'
+            Results:
+            -
+                name: IMAGE_SIZE
+                type: str
+                item: 0
+                index: 0
+-
+    Name: WiFi_Scan
+    Instructions: >
+       WiFi Scan
+    Proc: Commander
+    Args:
+        Cmds:
+        - Cmd: 'ifconfig mlan0 up'
+        - Cmd: 'sleep 1'
+        - Cmd: 'ifconfig mlan0 up'
+        - Cmd: 'sleep 1'
+        - Cmd: "iw dev mlan0 scan | grep SSID > /tmp/wifi_scan.log"
+        -
+            Cmd: "cat /tmp/wifi_scan.log | grep TP-LINK_SE | wc -l"
+            Regex: '(\d+)'
+            Results:
+            -
+                name: WIFI_SCAN_24G
+                type: str
+                item: 0
+                index: 0
+        -
+            Cmd: "cat /tmp/wifi_scan.log | grep opcl-q7cf8e8-3 | wc -l"
+            Regex: '(\d+)'
+            Results:
+            -
+                name: WIFI_SCAN_50G
+                type: str
+                item: 0
+                index: 0
+-
+    Name: Bluetooth_Scan
+    Instructions: >
+       Bluetooth Scan
+    Proc: Commander
+    Args:
+        Cmds:
+        - Cmd: 'hciconfig hci0 up'
+        - Cmd: 'sleep 1'
+        - Cmd: 'hciconfig hci0 up'
+        - Cmd: 'sleep 1'
+        - Cmd: 'hcitool scan > /tmp/bt_scan.log'
+        - 
+            Cmd: "cat /tmp/bt_scan.log | grep A0:88:69:46:45:CD | wc -l"
+            Regex: '(\d+)'
+            Results:
+            -
+                name: BT_SCAN_DEV
+                type: str
+                item: 0
+                index: 0
+-
+    Name: USB_Board
+    Instructions: >
+       Get USB Board Connector Status by i2cdetect command
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Cmd: "i2cdetect -y -r 1 | grep 60 | awk '{print $2}'"
+            Regex: '(\w+)'
+            Results:
+            -
+                name: USB_CONN
+                type: str
+                item: 0
+                index: 0
+-
+    Name: LED_Board
+    Instructions: >
+       Get LED Board Status by i2cdetect command
+    Proc: Commander
+    Args:
+        Cmds:
+        -
+            Cmd: "i2cdetect -y -r 0 | grep 60 | awk '{print $2}'"
+            Regex: '(\w+)'
+            Results:
+            -
+                name: LED_BOARD
+                type: str
+                item: 0
+                index: 0

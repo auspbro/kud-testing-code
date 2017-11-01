@@ -1,0 +1,18 @@
+ADB:
+  MODE: USB
+  RETRIES: 1
+  SID: 0123456789ABCDEF
+CMD_TIMEOUT: 36
+CONNECT: UART
+Logging:
+  Path: log_files
+SN: A1234567890
+TestBench:
+  PreTest:
+    Path: test_lists\pre_test.yml
+UART:
+  BAUD: 115200
+  COM: COM6
+  DUT_MAC: 8d81692291b0
+  RETRIES: 2
+  TIMEOUT: 1

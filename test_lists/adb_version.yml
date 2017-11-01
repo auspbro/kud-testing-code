@@ -1,0 +1,16 @@
+-
+    Name: Build_Version
+    Instructions: >
+        Read Build Version
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Cmd: 'getprop | grep ro.custom.build.version'
+            Regex: '\[(\w+.\w+.\w+)\]'
+            Results:
+            -
+                name: BUILD_VER
+                type: str
+                item: 0
+                index: 0

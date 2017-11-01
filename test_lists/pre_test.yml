@@ -1,0 +1,15 @@
+# This test list is always executed prior to user-defined test-lists
+# you can add additional test-steps, but the first test-step MUST always
+# be TestRecordDutID since it serves a special purpose
+-
+    Name: TestRecordDutID
+    Options:
+        ConfigStep: True
+        NumericEntry: 1
+    Instructions: >
+        Enter the serial number to continue...
+    Proc: RecordDutID
+    Args:
+        Min: 1
+        Max: 150
+        Value: 75

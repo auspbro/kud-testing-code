@@ -1,0 +1,16 @@
+-
+    Name: Kernel_Version
+    Instructions: >
+        Read Linux Kernel Version
+    Proc: Commander
+    Args:
+        Cmds:
+        - 
+            Cmd: 'hostname'
+            Regex: '(\w+(\-\w+){1,2})'
+            Results:
+            -
+                name: KERNEL_VER
+                type: str
+                item: 0
+                index: 0

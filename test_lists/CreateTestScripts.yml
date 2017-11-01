@@ -1,0 +1,17 @@
+-
+    Name: CreateTestScripts
+    Instructions: >
+        Create Test Scripts
+    Proc: Commander
+    Args:
+        Cmds:
+        - Cmd: "echo '1 4 1 7' > /proc/sys/kernel/printk"
+        - Cmd: "echo '#!/bin/bash' > /tmp/mfm.sh"
+        - Cmd: "echo 'MFMStart << EOF' >> /tmp/mfm.sh"
+        - Cmd: "echo '$1 $2' >> /tmp/mfm.sh"
+        - Cmd: "echo 'exit' >> /tmp/mfm.sh"
+        - Cmd: "echo 'EOF' >> /tmp/mfm.sh"
+        - Cmd: "echo '#!/bin/bash' > /tmp/run.sh"
+        - Cmd: "ecch 'rm /tmp/$1.log' >> /tmp/run.sh"
+        - Cmd: "echo 'sh /tmp/mfm.sh $1 $2 > $1.log' >> /tmp/run.sh"
+        - Cmd: "echo 'cat /tmp/$1.log' >> /tmp/run.sh"
